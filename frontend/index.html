@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Insurance renewal prediction dashboard">
+  <title>Insurance Renewal Prediction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Insurance Renewal Prediction home">
+        <span class="brand-mark" aria-hidden="true">IR</span>
+        <span class="brand-name">Renewal<span>IQ</span></span>
+      </a>
+      <div class="connection-status"><span class="status-dot"></span>Prediction workspace</div>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow">Insurance intelligence / 01</div>
+      <h1 id="page-title">Insurance Renewal<br><em>Prediction</em></h1>
+      <p>Turn customer signals into confident renewal decisions with probability-led insights and incentive recommendations.</p>
+    </section>
+
+    <section class="workspace" aria-label="Prediction workspace">
+      <aside class="mode-panel">
+        <div class="panel-kicker">Choose a workflow</div>
+        <h2>How would you like to predict?</h2>
+        <p class="panel-description">Run a focused prediction for one customer or process your entire portfolio at once.</p>
+
+        <div class="mode-tabs" role="tablist" aria-label="Prediction mode">
+          <button class="mode-tab active" id="single-tab" type="button" role="tab" aria-selected="true" aria-controls="single-panel">
+            <span class="tab-number">01</span>
+            <span><strong>Single Customer</strong><small>One tailored recommendation</small></span>
+            <span class="tab-arrow" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="mode-tab" id="bulk-tab" type="button" role="tab" aria-selected="false" aria-controls="bulk-panel" tabindex="-1">
+            <span class="tab-number">02</span>
+            <span><strong>Bulk Upload</strong><small>Process a customer file</small></span>
+            <span class="tab-arrow" aria-hidden="true">&#8594;</span>
+          </button>
+        </div>
+
+        <div class="side-note">
+          <span class="note-icon" aria-hidden="true">i</span>
+          <p>Predictions use your trained renewal model and fitted preprocessing pipeline.</p>
+        </div>
+      </aside>
+
+      <section class="form-panel">
+        <div class="panel-heading">
+          <div>
+            <div class="panel-kicker">Single customer</div>
+            <h2 id="form-title">Customer profile</h2>
+          </div>
+          <span class="step-label">Step 1 <span>/</span> 1</span>
+        </div>
+
+        <div id="single-panel" class="tab-panel" role="tabpanel" aria-labelledby="single-tab">
+          <form id="prediction-form" novalidate>
+            <div class="form-section">
+              <div class="section-title"><span>01</span><h3>Customer details</h3></div>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Premium paid by cash / credit <b>*</b></span>
+                  <input name="perc_premium_paid_by_cash_credit" type="number" min="0" max="1" step="0.01" value="0.1" required>
+                  <small>Enter a value between 0 and 1</small>
+                </label>
+                <label class="field">
+                  <span>Age in days <b>*</b></span>
+                  <input name="age_in_days" type="number" min="0" step="1" value="12000" required>
+                </label>
+                <label class="field">
+                  <span>Annual income <b>*</b></span>
+                  <div class="input-prefix"><i>Rs</i><input name="Income" type="number" min="0" step="0.01" value="50000" required></div>
+                </label>
+                <label class="field">
+                  <span>Premium amount <b>*</b></span>
+                  <div class="input-prefix"><i>Rs</i><input name="premium" type="number" min="0" step="0.01" value="20000" required></div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-title"><span>02</span><h3>Payment history</h3></div>
+              <div class="field-grid">
+                <label class="field">
+                  <span>3-6 months late <b>*</b></span>
+                  <input name="Count_3_6_months_late" type="number" min="0" step="1" value="0" required>
+                </label>
+                <label class="field">
+                  <span>6-12 months late <b>*</b></span>
+                  <input name="Count_6_12_months_late" type="number" min="0" step="1" value="1" required>
+                </label>
+                <label class="field">
+                  <span>More than 12 months late <b>*</b></span>
+                  <input name="Count_more_than_12_months_late" type="number" min="0" step="1" value="0" required>
+                </label>
+                <label class="field">
+                  <span>Premiums paid <b>*</b></span>
+                  <input name="no_of_premiums_paid" type="number" min="0" step="1" value="10" required>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-section last-section">
+              <div class="section-title"><span>03</span><h3>Application context</h3></div>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Underwriting score <b>*</b></span>
+                  <input name="application_underwriting_score" type="number" min="0" max="1" step="0.01" value="0.9" required>
+                </label>
+                <label class="field">
+                  <span>Sourcing channel <b>*</b></span>
+                  <select name="sourcing_channel" required>
+                    <option value="A">Channel A</option>
+                    <option value="B">Channel B</option>
+                    <option value="C">Channel C</option>
+                    <option value="D">Channel D</option>
+                    <option value="E">Channel E</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span>Residence area type <b>*</b></span>
+                  <select name="residence_area_type" required>
+                    <option value="Urban">Urban</option>
+                    <option value="Rural">Rural</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div id="single-error" class="message error" role="alert" hidden></div>
+            <button class="primary-button" type="submit"><span>Generate prediction</span><span aria-hidden="true">&#8594;</span></button>
+          </form>
+        </div>
+
+        <div id="bulk-panel" class="tab-panel" role="tabpanel" aria-labelledby="bulk-tab" hidden>
+          <div class="bulk-intro">
+            <div class="upload-illustration" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div><h3>Upload your customer portfolio</h3><p>Bring a CSV or Excel file with the same customer fields used for single prediction.</p></div>
+          </div>
+          <form id="bulk-form">
+            <label class="file-drop" for="bulk-file">
+              <span class="upload-icon" aria-hidden="true">&#8593;</span>
+              <strong id="file-label">Choose a file to upload</strong>
+              <span>CSV or XLSX, multiple customers supported</span>
+              <input id="bulk-file" type="file" name="file" accept=".csv,.xlsx" required>
+            </label>
+            <div id="bulk-error" class="message error" role="alert" hidden></div>
+            <div id="bulk-success" class="message success" role="status" hidden></div>
+            <button class="primary-button" type="submit"><span>Generate bulk predictions</span><span aria-hidden="true">&#8594;</span></button>
+          </form>
+        </div>
+      </section>
+    </section>
+
+    <section id="results" class="results-panel" aria-live="polite" hidden>
+      <div class="results-heading"><div><div class="panel-kicker">Prediction complete</div><h2>Renewal outlook</h2></div><span class="result-badge">Model result</span></div>
+      <div class="results-grid">
+        <div class="probability-card"><span>Renewal probability</span><strong id="renewal-probability">--</strong><div class="probability-track"><span id="probability-bar"></span></div><small>Likelihood of customer renewal</small></div>
+        <div class="metric-card"><span>Baseline expected revenue</span><strong id="baseline-revenue">--</strong><small>Without additional incentive</small></div>
+        <div class="metric-card accent"><span>Optimal incentive</span><strong id="optimal-incentive">--</strong><small>Recommended agent incentive</small></div>
+        <div class="metric-card"><span>Best expected revenue</span><strong id="best-expected-revenue">--</strong><small>Before incentive cost</small></div>
+        <div class="metric-card"><span>Maximum net revenue</span><strong id="max-net-revenue">--</strong><small>After incentive cost</small></div>
+      </div>
+    </section>
+    <footer><span>RenewalIQ</span><span>Powered by your insurance renewal model</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
