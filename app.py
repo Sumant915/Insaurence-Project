@@ -35,7 +35,7 @@ def optimal_incentive(p,premium):
     max_net_revenue=p*premium
     optimal_incentive=0
     best_expected_revenue = baseline_revenue
-    for I in range(500,2500,500):
+    for I in range(500,4501,100):
         effort = agent_effort(I)
         uplift = prob_after_agent(I)
         final_prob = p + uplift
