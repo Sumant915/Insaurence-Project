@@ -4,172 +4,250 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Insurance renewal prediction dashboard">
-  <title>Insurance Renewal Prediction</title>
+  <title>RenewalIQ - Insurance Retention Intelligence</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app-shell">
-    <header class="topbar">
-      <a class="brand" href="index.html" aria-label="Insurance Renewal Prediction home">
-        <span class="brand-mark" aria-hidden="true">IR</span>
-        <span class="brand-name">Renewal<span>IQ</span></span>
-      </a>
-      <div class="connection-status"><span class="status-dot"></span>Prediction workspace</div>
+  <main class="app-container">
+    <header class="header">
+      <div class="header-left">
+        <a class="brand" href="index.html">RenewalIQ</a>
+        <span class="tagline">Insurance Retention Intelligence</span>
+      </div>
+      <div class="header-right">
+        <nav class="nav-links">
+          <span>AI-Powered Prediction</span>
+          <span>Live API</span>
+        </nav>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span>Workspace Active</span>
+        </div>
+      </div>
     </header>
 
-    <section class="intro" aria-labelledby="page-title">
-      <div class="eyebrow">Insurance intelligence / 01</div>
-      <h1 id="page-title">Insurance Renewal<br><em>Prediction</em></h1>
-      <p>Turn customer signals into confident renewal decisions with probability-led insights and incentive recommendations.</p>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">INSURANCE INTELLIGENCE</div>
+        <h1 class="hero-title">Predict renewals.<br>Optimize retention.</h1>
+        <p class="hero-text">Turn customer behaviour and policy signals into renewal probabilities and economically informed retention decisions.</p>
+        <div class="trust-row">
+          <span class="trust-pill">Machine Learning</span>
+          <span class="trust-pill">FastAPI</span>
+          <span class="trust-pill">Bulk Analytics</span>
+        </div>
+      </div>
     </section>
 
-    <section class="workspace" aria-label="Prediction workspace">
-      <aside class="mode-panel">
-        <div class="panel-kicker">Choose a workflow</div>
-        <h2>How would you like to predict?</h2>
-        <p class="panel-description">Run a focused prediction for one customer or process your entire portfolio at once.</p>
+    <section class="workspace">
+      <div class="workspace-tabs" role="tablist">
+        <button class="tab-button active" id="single-tab" type="button" role="tab" aria-selected="true" aria-controls="single-panel">
+          Single Customer
+        </button>
+        <button class="tab-button" id="bulk-tab" type="button" role="tab" aria-selected="false" aria-controls="bulk-panel" tabindex="-1">
+          Bulk Upload
+        </button>
+      </div>
 
-        <div class="mode-tabs" role="tablist" aria-label="Prediction mode">
-          <button class="mode-tab active" id="single-tab" type="button" role="tab" aria-selected="true" aria-controls="single-panel">
-            <span class="tab-number">01</span>
-            <span><strong>Single Customer</strong><small>One tailored recommendation</small></span>
-            <span class="tab-arrow" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="mode-tab" id="bulk-tab" type="button" role="tab" aria-selected="false" aria-controls="bulk-panel" tabindex="-1">
-            <span class="tab-number">02</span>
-            <span><strong>Bulk Upload</strong><small>Process a customer file</small></span>
-            <span class="tab-arrow" aria-hidden="true">&#8594;</span>
-          </button>
-        </div>
-
-        <div class="side-note">
-          <span class="note-icon" aria-hidden="true">i</span>
-          <p>Predictions use your trained renewal model and fitted preprocessing pipeline.</p>
-        </div>
-      </aside>
-
-      <section class="form-panel">
-        <div class="panel-heading">
-          <div>
-            <div class="panel-kicker">Single customer</div>
-            <h2 id="form-title">Customer profile</h2>
-          </div>
-          <span class="step-label">Step 1 <span>/</span> 1</span>
-        </div>
-
-        <div id="single-panel" class="tab-panel" role="tabpanel" aria-labelledby="single-tab">
+      <div class="workspace-container">
+        <div id="single-panel" class="tab-content active" role="tabpanel" aria-labelledby="single-tab">
           <form id="prediction-form" novalidate>
-            <div class="form-section">
-              <div class="section-title"><span>01</span><h3>Customer details</h3></div>
-              <div class="field-grid">
-                <label class="field">
-                  <span>Premium paid by cash / credit <b>*</b></span>
-                  <input name="perc_premium_paid_by_cash_credit" type="number" min="0" max="1" step="0.01" value="0.1" required>
-                  <small>Enter a value between 0 and 1</small>
-                </label>
-                <label class="field">
-                  <span>Age in days <b>*</b></span>
-                  <input name="age_in_days" type="number" min="0" step="1" value="12000" required>
-                </label>
-                <label class="field">
-                  <span>Annual income <b>*</b></span>
-                  <div class="input-prefix"><i>Rs</i><input name="Income" type="number" min="0" step="0.01" value="50000" required></div>
-                </label>
-                <label class="field">
-                  <span>Premium amount <b>*</b></span>
-                  <div class="input-prefix"><i>Rs</i><input name="premium" type="number" min="0" step="0.01" value="20000" required></div>
-                </label>
+            
+            <div class="form-group">
+              <h3 class="group-title">01 &mdash; Customer Profile</h3>
+              <div class="grid">
+                <div class="input-wrapper">
+                  <label>Premium paid by cash/credit <span class="req">*</span></label>
+                  <input name="perc_premium_paid_by_cash_credit" type="number" min="0" max="1" step="0.01" value="" placeholder="0.0 to 1.0" required>
+                  <span class="helper">Portion of premium paid by cash or credit.</span>
+                </div>
+                <div class="input-wrapper">
+                  <label>Age in days <span class="req">*</span></label>
+                  <div class="input-addon">
+                    <input name="age_in_days" type="number" min="0" step="1" value="" placeholder="e.g. 15000" required>
+                    <span class="suffix">days</span>
+                  </div>
+                </div>
+                <div class="input-wrapper">
+                  <label>Annual income <span class="req">*</span></label>
+                  <div class="input-addon">
+                    <span class="prefix">₹</span>
+                    <input name="Income" type="number" min="0" step="1" value="" placeholder="e.g. 600000" required>
+                  </div>
+                </div>
+                <div class="input-wrapper">
+                  <label>Premium amount <span class="req">*</span></label>
+                  <div class="input-addon">
+                    <span class="prefix">₹</span>
+                    <input name="premium" type="number" min="0" step="1" value="" placeholder="e.g. 15000" required>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="form-section">
-              <div class="section-title"><span>02</span><h3>Payment history</h3></div>
-              <div class="field-grid">
-                <label class="field">
-                  <span>3-6 months late <b>*</b></span>
-                  <input name="Count_3_6_months_late" type="number" min="0" step="1" value="0" required>
-                </label>
-                <label class="field">
-                  <span>6-12 months late <b>*</b></span>
-                  <input name="Count_6_12_months_late" type="number" min="0" step="1" value="1" required>
-                </label>
-                <label class="field">
-                  <span>More than 12 months late <b>*</b></span>
-                  <input name="Count_more_than_12_months_late" type="number" min="0" step="1" value="0" required>
-                </label>
-                <label class="field">
-                  <span>Premiums paid <b>*</b></span>
-                  <input name="no_of_premiums_paid" type="number" min="0" step="1" value="10" required>
-                </label>
+            <div class="form-group">
+              <h3 class="group-title">02 &mdash; Payment Behaviour</h3>
+              <div class="grid">
+                <div class="input-wrapper">
+                  <label>3–6 months late <span class="req">*</span></label>
+                  <input name="Count_3_6_months_late" type="number" min="0" step="1" value="" placeholder="Count" required>
+                  <span class="helper">Number of premiums 3-6 months late.</span>
+                </div>
+                <div class="input-wrapper">
+                  <label>6–12 months late <span class="req">*</span></label>
+                  <input name="Count_6_12_months_late" type="number" min="0" step="1" value="" placeholder="Count" required>
+                </div>
+                <div class="input-wrapper">
+                  <label>More than 12 months late <span class="req">*</span></label>
+                  <input name="Count_more_than_12_months_late" type="number" min="0" step="1" value="" placeholder="Count" required>
+                </div>
+                <div class="input-wrapper">
+                  <label>Premiums paid <span class="req">*</span></label>
+                  <input name="no_of_premiums_paid" type="number" min="0" step="1" value="" placeholder="Total paid" required>
+                </div>
               </div>
             </div>
 
-            <div class="form-section last-section">
-              <div class="section-title"><span>03</span><h3>Application context</h3></div>
-              <div class="field-grid">
-                <label class="field">
-                  <span>Underwriting score <b>*</b></span>
-                  <input name="application_underwriting_score" type="number" min="0" max="1" step="0.01" value="0.9" required>
-                </label>
-                <label class="field">
-                  <span>Sourcing channel <b>*</b></span>
+            <div class="form-group">
+              <h3 class="group-title">03 &mdash; Application Context</h3>
+              <div class="grid">
+                <div class="input-wrapper">
+                  <label>Underwriting score <span class="req">*</span></label>
+                  <input name="application_underwriting_score" type="number" min="0" max="1" step="0.01" value="" placeholder="0.0 to 1.0" required>
+                  <span class="helper">Score assessed during underwriting.</span>
+                </div>
+                <div class="input-wrapper">
+                  <label>Sourcing channel <span class="req">*</span></label>
                   <select name="sourcing_channel" required>
+                    <option value="" disabled selected>Select channel</option>
                     <option value="A">Channel A</option>
                     <option value="B">Channel B</option>
                     <option value="C">Channel C</option>
                     <option value="D">Channel D</option>
                     <option value="E">Channel E</option>
                   </select>
-                </label>
-                <label class="field">
-                  <span>Residence area type <b>*</b></span>
+                </div>
+                <div class="input-wrapper">
+                  <label>Residence area type <span class="req">*</span></label>
                   <select name="residence_area_type" required>
+                    <option value="" disabled selected>Select residence type</option>
                     <option value="Urban">Urban</option>
                     <option value="Rural">Rural</option>
                   </select>
-                </label>
+                </div>
               </div>
             </div>
-            <div id="single-error" class="message error" role="alert" hidden></div>
-            <button class="primary-button" type="submit"><span>Generate prediction</span><span aria-hidden="true">&#8594;</span></button>
+
+            <div id="single-error" class="alert-box error" hidden></div>
+            
+            <div class="form-action">
+              <button class="btn primary" type="submit" id="analyze-btn">
+                <span>Analyze Customer &rarr;</span>
+              </button>
+            </div>
           </form>
         </div>
 
-        <div id="bulk-panel" class="tab-panel" role="tabpanel" aria-labelledby="bulk-tab" hidden>
-          <div class="bulk-intro">
-            <div class="upload-illustration" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div><h3>Upload your customer portfolio</h3><p>Bring a CSV or Excel file with the same customer fields used for single prediction.</p></div>
+        <div id="bulk-panel" class="tab-content" role="tabpanel" aria-labelledby="bulk-tab" hidden>
+          <div class="bulk-header">
+            <h2>Analyze Customer Portfolio</h2>
+            <p>Upload a CSV or XLSX file containing multiple customer records.</p>
           </div>
-          <form id="bulk-form">
-            <label class="file-drop" for="bulk-file">
-              <span class="upload-icon" aria-hidden="true">&#8593;</span>
-              <strong id="file-label">Choose a file to upload</strong>
-              <span>CSV or XLSX, multiple customers supported</span>
-              <input id="bulk-file" type="file" name="file" accept=".csv,.xlsx" required>
-            </label>
-            <div id="bulk-error" class="message error" role="alert" hidden></div>
-            <div id="bulk-success" class="message success" role="status" hidden></div>
-            <button class="primary-button" type="submit"><span>Generate bulk predictions</span><span aria-hidden="true">&#8594;</span></button>
+          <form id="bulk-form" class="bulk-upload-form">
+            <div class="upload-area">
+              <label for="bulk-file" class="upload-label">
+                <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                <span class="upload-title" id="file-label">Click to browse or drag and drop</span>
+                <span class="upload-desc">CSV or XLSX</span>
+              </label>
+              <input id="bulk-file" type="file" name="file" accept=".csv,.xlsx" required class="hidden-input">
+            </div>
+            <div id="bulk-error" class="alert-box error" hidden></div>
+            <div id="bulk-success" class="alert-box success" hidden>
+              <h4>Portfolio analysis complete</h4>
+              <p id="bulk-success-msg">Your prediction report is ready.</p>
+            </div>
+            <div class="form-action">
+              <button class="btn primary" type="submit" id="bulk-analyze-btn">
+                <span>Analyze Portfolio &rarr;</span>
+              </button>
+            </div>
           </form>
         </div>
-      </section>
-    </section>
-
-    <section id="results" class="results-panel" aria-live="polite" hidden>
-      <div class="results-heading"><div><div class="panel-kicker">Prediction complete</div><h2>Renewal outlook</h2></div><span class="result-badge">Model result</span></div>
-      <div class="results-grid">
-        <div class="probability-card"><span>Renewal probability</span><strong id="renewal-probability">--</strong><div class="probability-track"><span id="probability-bar"></span></div><small>Likelihood of customer renewal</small></div>
-        <div class="metric-card"><span>Baseline expected revenue</span><strong id="baseline-revenue">--</strong><small>Without additional incentive</small></div>
-        <div class="metric-card accent"><span>Optimal incentive</span><strong id="optimal-incentive">--</strong><small>Recommended agent incentive</small></div>
-        <div class="metric-card"><span>Best expected revenue</span><strong id="best-expected-revenue">--</strong><small>Before incentive cost</small></div>
-        <div class="metric-card"><span>Maximum net revenue</span><strong id="max-net-revenue">--</strong><small>After incentive cost</small></div>
       </div>
     </section>
-    <footer><span>RenewalIQ</span><span>Powered by your insurance renewal model</span></footer>
+    
+    <section id="results" class="results-section" hidden>
+      <div class="results-grid">
+        <div class="result-card primary-result">
+          <div class="card-header">Renewal Probability</div>
+          <div class="prob-value" id="renewal-probability">--</div>
+          <div class="gauge-container">
+            <div class="gauge-bar" id="probability-bar"></div>
+          </div>
+          <div class="interpretation" id="interpretation-text">--</div>
+        </div>
+        
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-label">Baseline Expected Revenue</span>
+            <span class="metric-val" id="baseline-revenue">--</span>
+          </div>
+          <div class="metric-card optimal">
+            <span class="metric-label">Optimal Incentive</span>
+            <span class="metric-val" id="optimal-incentive">--</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Best Expected Revenue</span>
+            <span class="metric-val" id="best-expected-revenue">--</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Maximum Net Revenue</span>
+            <span class="metric-val" id="max-net-revenue">--</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="creator-section">
+      <div class="creator-content">
+        <h2>Built by Sumantra Singh</h2>
+        <p class="creator-subtitle">Designed and developed as an end-to-end machine learning decision-support application.</p>
+        <p class="creator-desc">An end-to-end Insurance Renewal Prediction system combining machine learning, revenue-aware incentive optimization, FastAPI backend services, bulk analytics, and a responsive web interface.</p>
+        <div class="social-links">
+          <a href="https://github.com/Sumant915" target="_blank" rel="noopener noreferrer" class="social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/sumantra-singh-a85956317/" target="_blank" rel="noopener noreferrer" class="social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <p class="tech-stack">Built with Python &middot; Scikit-learn &middot; FastAPI &middot; Pandas &middot; JavaScript</p>
+      </div>
+    </section>
   </main>
+  
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <strong>RenewalIQ</strong>
+        <span>Insurance Retention Intelligence</span>
+      </div>
+      <div class="footer-copy">
+        Built by Sumantra Singh
+        <a href="https://github.com/Sumant915" target="_blank" rel="noopener noreferrer">GH</a>
+        <a href="https://www.linkedin.com/in/sumantra-singh-a85956317/" target="_blank" rel="noopener noreferrer">IN</a>
+      </div>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
